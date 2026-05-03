@@ -70,3 +70,39 @@ test_metrics.jsonl
 Lines 1-2
 {"project_iteration": 1, "attempt": 1, "timestamp": "2026-05-03T12:01:24.335Z", "build_successful": true, "total_tests": 13, "passed": 13, "failed": 0, "pass_rate_percentage": 100.0}
 {"project_iteration": 2, "attempt": 1, "timestamp": "2026-05-03T12:10:20.300Z", "build_successful": true, "total_tests": 13, "passed": 13, "failed": 0, "pass_rate_percentage": 100.0}
+
+
+### Iteration 3
+
+Iteration 3 complete in one attempt, 19/19 tests green (no iteration-1/2 regression).
+
+What changed
+Added:
+
+SubtitleQc.Core/
+  Qc/
+    Abstractions/IShotChangeProvider.cs       # new abstraction
+    Rules/
+      CrossShotBoundaryCheckRule.cs           # new rule
+      MinFramesFromShotChangeRule.cs          # new rule
+Modified (one file, additive only):
+
+SubtitleQc.Core/Models/Cue.cs — added optional int? startFrame ctor parameter and StartFrame property. The existing 4-arg form still compiles unchanged, so all 13 iteration-1 tests continued to pass.
+Untouched: the QC RuleEngine, all six iteration-1 rules, QcStatus/QcResult/QcReport, IQcRule, all parsers (SRT/WebVTT/TTML), and the test project.
+
+Design notes
+Per-cue rules over the existing template. Both new rules inherit PerCueRuleBase, so the engine's iteration loop, the report-building, and the (cue, rule) traceability shape are reused unchanged. Adding shot-change checks did not require touching RuleEngine — that's the OCP guarantee from iteration 1 paying off again.
+External data behind an abstraction (DIP). IShotChangeProvider is the only seam. Each rule injects it through its constructor; the engine remains entirely unaware of where shot-change data comes from. The test's StubShotChangeProvider is a textbook example of how easy this makes substitution.
+Two accessors on the provider, deliberately. GetShotChangeTimestamps() and GetShotChangeFrames() exist because the two rules speak different units. Crucially, the provider does not convert between them — that would silently require a frame rate, and embedding an assumed frame rate in the abstraction would be a footgun for future iterations. Each rule consumes the unit native to its own assertion.
+Boundary semantics, derived from the tests:
+CrossShotBoundaryCheck: cue.Start < cut < cue.End (strict). Confirmed by the "starts strictly after cut" and "ends before cut" pass cases.
+MinFramesFromShotChange: |startFrame − cutFrame| < threshold fails. Confirmed by the boundary case (frame 1002 vs cut 1000, threshold 2 → distance 2 → pass).
+Documented assumption — cues without StartFrame. MinFramesFromShotChange returns Passed when cue.StartFrame is null. The rule has nothing to assert against in that case; failing would punish parsers that don't emit frame metadata. The behavior is documented in the rule's XML comment so it isn't a silent mystery later.
+Cue.StartFrame left nullable on purpose. Iteration 1's parsers (SRT/WebVTT) and iteration 2's TTML parser don't supply frame info, and forcing every parser to compute it would couple them to a frame rate they don't have. Nullable is the correct "optional metadata" shape and stays JSON-serializable.
+Telemetry
+
+test_metrics.jsonl
+Lines 1-3
+{"project_iteration": 1, "attempt": 1, "timestamp": "2026-05-03T12:01:24.335Z", "build_successful": true, "total_tests": 13, "passed": 13, "failed": 0, "pass_rate_percentage": 100.0}
+{"project_iteration": 2, "attempt": 1, "timestamp": "2026-05-03T12:10:20.300Z", "build_successful": true, "total_tests": 13, "passed": 13, "failed": 0, "pass_rate_percentage": 100.0}
+{"project_iteration": 3, "attempt": 1, "timestamp": "2026-05-03T12:20:51.944Z", "build_su

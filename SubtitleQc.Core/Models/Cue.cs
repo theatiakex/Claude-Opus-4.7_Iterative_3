@@ -20,7 +20,20 @@ public sealed class Cue
 
     public IReadOnlyList<string> Lines { get; }
 
-    public Cue(string id, TimeSpan start, TimeSpan end, IReadOnlyList<string> lines)
+    /// <summary>
+    /// Optional frame-accurate start position when the source format supplies it (e.g.
+    /// EBU-STL or TTML with <c>tickRate</c>). Kept nullable so the iteration-1 ctor
+    /// stays backwards-compatible and rules that need frames can opt in via this
+    /// property without forcing every parser to compute frames it does not have.
+    /// </summary>
+    public int? StartFrame { get; }
+
+    public Cue(
+        string id,
+        TimeSpan start,
+        TimeSpan end,
+        IReadOnlyList<string> lines,
+        int? startFrame = null)
     {
         ArgumentNullException.ThrowIfNull(id);
         ArgumentNullException.ThrowIfNull(lines);
@@ -33,6 +46,7 @@ public sealed class Cue
         Start = start;
         End = end;
         Lines = lines.ToArray();
+        StartFrame = startFrame;
     }
 
     /// <summary>
