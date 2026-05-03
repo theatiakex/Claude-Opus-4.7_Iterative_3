@@ -1,17 +1,23 @@
 {
   "version": 2,
-  "dgSpecHash": "pJOYrSQaLXc=",
-  "success": false,
-  "projectFilePath": "C:\\KTH\\KEX\\Claude Opus 4.7\\Iterative\\SubtitleQc.Tests\\SubtitleQc.Tests.csproj",
-  "expectedPackageFiles": [],
-  "logs": [
-    {
-      "code": "NU1015",
-      "level": "Error",
-      "message": "The following PackageReference item(s) do not have a version specified: coverlet.collector, Microsoft.NET.Test.Sdk, xunit, xunit.runner.visualstudio",
-      "projectPath": "C:\\KTH\\KEX\\Claude Opus 4.7\\Iterative\\SubtitleQc.Tests\\SubtitleQc.Tests.csproj",
-      "filePath": "C:\\KTH\\KEX\\Claude Opus 4.7\\Iterative\\SubtitleQc.Tests\\SubtitleQc.Tests.csproj",
-      "targetGraphs": []
-    }
-  ]
+  "dgSpecHash": "pCe0bvHAKoU=",
+  "success": true,
+  "projectFilePath": "C:\\KTH\\KEX\\Claude Opus 4.7\\Iterative\\Claude-Opus-4.7_Iterative_3\\SubtitleQc.Tests\\SubtitleQc.Tests.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\thea\\.nuget\\packages\\coverlet.collector\\6.0.2\\coverlet.collector.6.0.2.nupkg.sha512",
+    "C:\\Users\\thea\\.nuget\\packages\\microsoft.codecoverage\\17.11.1\\microsoft.codecoverage.17.11.1.nupkg.sha512",
+    "C:\\Users\\thea\\.nuget\\packages\\microsoft.net.test.sdk\\17.11.1\\microsoft.net.test.sdk.17.11.1.nupkg.sha512",
+    "C:\\Users\\thea\\.nuget\\packages\\microsoft.testplatform.objectmodel\\17.11.1\\microsoft.testplatform.objectmodel.17.11.1.nupkg.sha512",
+    "C:\\Users\\thea\\.nuget\\packages\\microsoft.testplatform.testhost\\17.11.1\\microsoft.testplatform.testhost.17.11.1.nupkg.sha512",
+    "C:\\Users\\thea\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\thea\\.nuget\\packages\\xunit\\2.9.2\\xunit.2.9.2.nupkg.sha512",
+    "C:\\Users\\thea\\.nuget\\packages\\xunit.abstractions\\2.0.3\\xunit.abstractions.2.0.3.nupkg.sha512",
+    "C:\\Users\\thea\\.nuget\\packages\\xunit.analyzers\\1.16.0\\xunit.analyzers.1.16.0.nupkg.sha512",
+    "C:\\Users\\thea\\.nuget\\packages\\xunit.assert\\2.9.2\\xunit.assert.2.9.2.nupkg.sha512",
+    "C:\\Users\\thea\\.nuget\\packages\\xunit.core\\2.9.2\\xunit.core.2.9.2.nupkg.sha512",
+    "C:\\Users\\thea\\.nuget\\packages\\xunit.extensibility.core\\2.9.2\\xunit.extensibility.core.2.9.2.nupkg.sha512",
+    "C:\\Users\\thea\\.nuget\\packages\\xunit.extensibility.execution\\2.9.2\\xunit.extensibility.execution.2.9.2.nupkg.sha512",
+    "C:\\Users\\thea\\.nuget\\packages\\xunit.runner.visualstudio\\2.8.2\\xunit.runner.visualstudio.2.8.2.nupkg.sha512"
+  ],
+  "logs": []
 }
