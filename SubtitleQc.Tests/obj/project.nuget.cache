@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "dgSpecHash": "pJOYrSQaLXc=",
+  "success": false,
+  "projectFilePath": "C:\\KTH\\KEX\\Claude Opus 4.7\\Iterative\\SubtitleQc.Tests\\SubtitleQc.Tests.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1015",
+      "level": "Error",
+      "message": "The following PackageReference item(s) do not have a version specified: coverlet.collector, Microsoft.NET.Test.Sdk, xunit, xunit.runner.visualstudio",
+      "projectPath": "C:\\KTH\\KEX\\Claude Opus 4.7\\Iterative\\SubtitleQc.Tests\\SubtitleQc.Tests.csproj",
+      "filePath": "C:\\KTH\\KEX\\Claude Opus 4.7\\Iterative\\SubtitleQc.Tests\\SubtitleQc.Tests.csproj",
+      "targetGraphs": []
+    }
+  ]
+}
